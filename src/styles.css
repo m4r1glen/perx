@@ -1,0 +1,818 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * PERX design system v2.
+ * Concept: "benefits as something you actually look forward to."
+ * Premium, warm-but-confident, optimistic, trustworthy.
+ * Closer to a modern fintech-meets-lifestyle product than an HR portal.
+ *
+ * The accent is themeable via --brand / --brand-foreground.
+ * Default identity is PERX deep teal-emerald.
+ * Demo: [data-theme="teamsystem"] re-themes the whole app.
+ */
+
+@theme inline {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 28px;
+
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* PERX semantic tokens (kept names = whole app re-skins automatically) */
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-parchment: var(--parchment);
+  --color-paper: var(--paper);
+
+  /* The themeable accent. */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-light: var(--brand-light);
+  --color-brand-soft: var(--brand-soft);
+
+  /* Back-compat aliases — older components used "copper" tokens. */
+  --color-copper: var(--brand);
+  --color-copper-dark: var(--brand-dark);
+  --color-copper-light: var(--brand-light);
+
+  --color-sage: var(--sage);
+  --color-clay: var(--clay);
+  --color-hairline: var(--hairline);
+}
+
+:root {
+  /* ===== PERX default identity ===== */
+  /* Brand: deep teal-emerald. Ownable, premium, distinct from generic SaaS blue. */
+  --brand: #0e7c66;
+  --brand-foreground: #ffffff;
+  --brand-dark: #0a5e4d;
+  --brand-light: #d5ede6;
+  --brand-soft: #ecf7f3;
+
+  /* Surfaces — cool off-white, not rustic cream. App-like, modern. */
+  --parchment: #fbfbfd;
+  --paper: #ffffff;
+
+  /* Text */
+  --ink: #16171d;
+  --ink-soft: #5b5d6b;
+
+  /* Semantic states */
+  --sage: #16a34a; /* success — distinct from teal brand */
+  --clay: #d97706; /* warning amber — used sparingly */
+
+  /* Lines */
+  --hairline: rgba(22, 23, 29, 0.07);
+  --hairline-strong: rgba(22, 23, 29, 0.12);
+
+  /* shadcn semantic mapped onto PERX brand */
+  --background: var(--parchment);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
+  --secondary: #eef0f4;
+  --secondary-foreground: var(--ink);
+  --muted: #f1f2f6;
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--brand-light);
+  --accent-foreground: var(--brand-dark);
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--brand);
+}
+
+/* ===== Per-tenant theme: TeamSystem demo preset ===== */
+[data-theme="teamsystem"] {
+  --brand: #1a9eda;
+  --brand-foreground: #ffffff;
+  --brand-dark: #0e6e9c;
+  --brand-light: #dceffa;
+  --brand-soft: #eef7fc;
+  /* TeamSystem magenta — used as the secondary highlight */
+  --clay: #c00b6c;
+}
+
+.dark {
+  --background: #0e0f14;
+  --foreground: #ecedf2;
+  --card: #16171d;
+  --card-foreground: #ecedf2;
+  --popover: #16171d;
+  --popover-foreground: #ecedf2;
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
+  --secondary: #1c1e26;
+  --secondary-foreground: #ecedf2;
+  --muted: #1c1e26;
+  --muted-foreground: #9a9ba8;
+  --accent: #133229;
+  --accent-foreground: var(--brand-light);
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(236, 237, 242, 0.08);
+  --input: rgba(236, 237, 242, 0.1);
+  --ring: var(--brand);
+
+  --parchment: #0e0f14;
+  --paper: #16171d;
+  --ink: #ecedf2;
+  --ink-soft: #9a9ba8;
+  --hairline: rgba(236, 237, 242, 0.08);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-mono-num,
+  .tabular-nums {
+    font-family: var(--font-mono);
+    font-feature-settings: "tnum", "zero";
+    letter-spacing: -0.01em;
+  }
+
+  /* Accessible, brand-coloured focus ring on every interactive element. */
+  :where(button, a, input, select, textarea, [role="button"], [tabindex]):focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--brand) 70%, transparent);
+    outline-offset: 2px;
+    border-radius: inherit;
+  }
+}
+
+/* ===== Utilities ===== */
+
+@utility hairline {
+  border: 1px solid var(--hairline);
+}
+
+/* Soft elevated card — used on key surfaces. Pair with bg-paper. */
+@utility soft-shadow {
+  box-shadow:
+    0 1px 2px rgba(22, 23, 29, 0.03),
+    0 8px 24px -16px rgba(22, 23, 29, 0.1);
+}
+
+@utility card-lift {
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 2px 4px rgba(22, 23, 29, 0.04),
+      0 18px 36px -20px rgba(22, 23, 29, 0.18);
+    border-color: var(--hairline-strong);
+  }
+}
+
+@utility btn-press {
+  transition:
+    transform 120ms ease,
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+  &:active {
+    transform: scale(0.975);
+  }
+}
+
+/* ===== Signature element: the points "wallet" ===== */
+/*
+ * Used wherever the points balance appears. A subtle brand-tinted gradient
+ * with a soft sheen — feels rewarding without being childish.
+ */
+@utility wallet-surface {
+  background:
+    radial-gradient(
+      120% 100% at 0% 0%,
+      color-mix(in oklab, var(--brand) 18%, transparent) 0%,
+      transparent 55%
+    ),
+    linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+  color: var(--brand-foreground);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+@utility wallet-sheen {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.18) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%);
+    animation: walletSheen 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+@keyframes walletSheen {
+  0%,
+  100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+/* Numeric count-up emphasis when the balance changes. */
+@keyframes pointsPulse {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.035);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.points-pulse {
+  animation: pointsPulse 480ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ===== Motion — restrained, purposeful ===== */
+@keyframes scanSweep {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+.scan-line {
+  animation: scanSweep 1.8s ease-in-out infinite;
+}
+
+@keyframes resultPop {
+  0% {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.015);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.result-pop {
+  animation: resultPop 360ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes checkDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.check-stroke {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: checkDraw 420ms 120ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-line,
+  .wallet-sheen::after,
+  .points-pulse,
+  .check-stroke {
+    animation: none !important;
+  }
+  .card-lift {
+    transition: none;
+  }
+}
+
+/* Print: isolate the receipt */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  .receipt-root,
+  .receipt-root * {
+    visibility: visible !important;
+  }
+  .receipt-root {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+/* ===== Concierge — subtle breathing glow + thinking shimmer ===== */
+@keyframes conciergeBreathe {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--brand) 22%, transparent),
+      0 0 18px -4px color-mix(in oklab, var(--brand) 28%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--brand) 34%, transparent),
+      0 0 32px -2px color-mix(in oklab, var(--brand) 48%, transparent);
+  }
+}
+.concierge-glow {
+  animation: conciergeBreathe 3.6s ease-in-out infinite;
+}
+
+@keyframes conciergeBreathePanel {
+  0%,
+  100% {
+    box-shadow:
+      0 24px 60px -30px rgba(0, 0, 0, 0.55),
+      0 0 0 1px color-mix(in oklab, var(--brand) 8%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 28px 70px -28px rgba(0, 0, 0, 0.6),
+      0 0 0 1px color-mix(in oklab, var(--brand) 16%, transparent);
+  }
+}
+.concierge-panel-glow {
+  animation: conciergeBreathePanel 4s ease-in-out infinite;
+}
+
+@keyframes conciergeThinkSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.concierge-thinking {
+  animation: conciergeBreathe 1.6s ease-in-out infinite;
+  position: relative;
+}
+.concierge-thinking::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 9999px;
+  padding: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--brand) 0%, transparent) 30%,
+    color-mix(in oklab, var(--brand) 75%, transparent) 50%,
+    color-mix(in oklab, var(--brand) 0%, transparent) 70%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: conciergeThinkSweep 1.6s linear infinite;
+  pointer-events: none;
+}
+
+/* Ask button sheen on hover */
+.ask-sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.ask-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+.ask-sheen:hover::after {
+  transform: translateX(120%);
+}
+
+/* Chips */
+.concierge-chip {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+.concierge-chip:hover {
+  transform: translateY(-1px);
+  background-color: color-mix(in oklab, var(--brand) 12%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concierge-glow,
+  .concierge-panel-glow,
+  .concierge-thinking,
+  .concierge-thinking::before {
+    animation: none !important;
+  }
+  .ask-sheen::after {
+    display: none;
+  }
+  .concierge-chip:hover {
+    transform: none;
+  }
+}
+
+/* ===== Card stagger entrance ===== */
+@keyframes staggerRise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.stagger-rise > * {
+  animation: staggerRise 0.42s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.stagger-rise > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.stagger-rise > *:nth-child(2) {
+  animation-delay: 50ms;
+}
+.stagger-rise > *:nth-child(3) {
+  animation-delay: 100ms;
+}
+.stagger-rise > *:nth-child(4) {
+  animation-delay: 150ms;
+}
+.stagger-rise > *:nth-child(5) {
+  animation-delay: 200ms;
+}
+.stagger-rise > *:nth-child(6) {
+  animation-delay: 250ms;
+}
+.stagger-rise > *:nth-child(7) {
+  animation-delay: 300ms;
+}
+.stagger-rise > *:nth-child(8) {
+  animation-delay: 350ms;
+}
+.stagger-rise > *:nth-child(9) {
+  animation-delay: 400ms;
+}
+.stagger-rise > *:nth-child(n + 10) {
+  animation-delay: 450ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-rise > * {
+    animation: none !important;
+  }
+}
+
+/* ===== Concierge FAB — breathing halo ===== */
+@keyframes conciergeFabHalo {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 color-mix(in oklab, var(--brand) 35%, transparent),
+      0 0 24px 4px color-mix(in oklab, var(--brand) 22%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 10px color-mix(in oklab, var(--brand) 0%, transparent),
+      0 0 36px 10px color-mix(in oklab, var(--brand) 32%, transparent);
+  }
+}
+.concierge-fab-halo {
+  animation: conciergeFabHalo 3.6s ease-in-out infinite;
+}
+.group:hover .concierge-fab-halo {
+  animation-duration: 2.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concierge-fab-halo {
+    animation: none !important;
+  }
+  .concierge-fab-btn {
+    transition: none !important;
+  }
+  .concierge-sheet,
+  .concierge-pop,
+  .concierge-backdrop {
+    animation: none !important;
+  }
+}
+
+/* ===== Concierge panel open/close ===== */
+@keyframes conciergeSheetUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.concierge-sheet {
+  animation: conciergeSheetUp 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes conciergePopIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.concierge-pop {
+  animation: conciergePopIn 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes conciergeBackdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.concierge-backdrop {
+  animation: conciergeBackdropIn 200ms ease-out both;
+}
+
+/* ===== Concierge typing indicator (3 dots) + caret ===== */
+@keyframes conciergeDotBounce {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  40% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+.concierge-typing-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--brand) 70%, white);
+  animation: conciergeDotBounce 1.1s ease-in-out infinite;
+}
+.concierge-typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.concierge-typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes conciergeCaretBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.concierge-typing-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: currentColor;
+  animation: conciergeCaretBlink 0.9s steps(1, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concierge-typing-dot,
+  .concierge-typing-caret {
+    animation: none !important;
+  }
+}
+
+/* ===== Year in Benefits — story experience ===== */
+@keyframes wrapOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.wrap-open {
+  animation: wrapOpen 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: bottom right;
+}
+
+@keyframes wrapSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+.wrap-slide {
+  animation: wrapSlideIn 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes wrapRise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.wrap-rise {
+  animation: wrapRise 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.wrap-slide .wrap-rise:nth-of-type(1) {
+  animation-delay: 120ms;
+}
+.wrap-slide .wrap-rise:nth-of-type(2) {
+  animation-delay: 260ms;
+}
+.wrap-slide .wrap-rise:nth-of-type(3) {
+  animation-delay: 400ms;
+}
+.wrap-slide .wrap-rise:nth-of-type(4) {
+  animation-delay: 540ms;
+}
+.wrap-slide .wrap-rise:nth-of-type(5) {
+  animation-delay: 680ms;
+}
+.wrap-slide .wrap-rise:nth-of-type(6) {
+  animation-delay: 820ms;
+}
+.wrap-slide .wrap-rise:nth-of-type(7) {
+  animation-delay: 960ms;
+}
+
+@keyframes wrapBarGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes wrapDriftA {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.08);
+    opacity: 1;
+  }
+}
+@keyframes wrapDriftB {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate(-50px, 30px) scale(1.12);
+    opacity: 1;
+  }
+}
+.wrap-drift-a {
+  animation: wrapDriftA 14s ease-in-out infinite;
+}
+.wrap-drift-b {
+  animation: wrapDriftB 18s ease-in-out infinite;
+}
+
+@keyframes wrapParticles {
+  0% {
+    background-position:
+      0 0,
+      0 0,
+      0 0;
+  }
+  100% {
+    background-position:
+      600px 800px,
+      -500px 700px,
+      400px -600px;
+  }
+}
+.wrap-particles {
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(213, 237, 230, 0.55), transparent 50%),
+    radial-gradient(1px 1px at 70% 60%, rgba(213, 237, 230, 0.45), transparent 50%),
+    radial-gradient(1.5px 1.5px at 40% 80%, rgba(213, 237, 230, 0.4), transparent 50%);
+  background-size:
+    600px 600px,
+    500px 500px,
+    700px 700px;
+  animation: wrapParticles 60s linear infinite;
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap-open,
+  .wrap-slide,
+  .wrap-rise,
+  .wrap-drift-a,
+  .wrap-drift-b,
+  .wrap-particles {
+    animation: none !important;
+  }
+}
