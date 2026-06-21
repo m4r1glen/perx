@@ -1,1 +1,0 @@
-ALTER TABLE public.providers ADD COLUMN IF NOT EXISTS contact_email text;
